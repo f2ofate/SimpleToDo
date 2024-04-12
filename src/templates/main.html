@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleToDo</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+<div style="margin-top: 50px;" class="ui container">
+    <h1 class="ui center aligned header">SimpleToDo</h1>
+
+    <form class="ui form" action="/add" method="post">
+        <div class="field">
+            <input type="text" name="title" placeholder="Enter Todo..."><br>
+        </div>
+        <button class="ui blue button" type="submit">Add</button>
+        <button class="ui green button right aligned" type="button" onclick="deleteCompleted()">Delete Completed</button>
+        <button class="ui red button" type="button" onclick="deleteAll()">Delete All</button>
+    </form>
+
+    <hr>
+
+    {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui big header">{{ todo.title }}</p>
+
+            {% if todo.complete == False %}
+                <span class="ui gray label">Not Complete</span>
+            {% else %}
+                <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
+            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    function deleteCompleted() {
+        if (confirm("Are you sure you want to delete all completed todos?")) {
+            window.location.href = "/delete_completed";
+        }
+    }
+
+    function deleteAll() {
+        if (confirm("Are you sure you want to delete all todos?")) {
+            window.location.href = "/delete_all";
+        }
+    }
+</script>
+
+</body>
+
+</html>
