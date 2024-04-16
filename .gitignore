@@ -142,3 +142,7 @@ pgdata
 
 # idea
 .idea
+
+# terraform
+.terraform*
+*tfstate*
