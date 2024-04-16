@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 # change 'pgress' to 'localhost' if app doesn't run in docker
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@pgress:5432/todo_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://todo:password@3.122.70.222:5432/todo_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
